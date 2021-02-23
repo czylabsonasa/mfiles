@@ -1,0 +1,19 @@
+function tester(m,c)
+
+  t0=tic() ;
+  ret = m(c) ;
+  t1=toc(t0) ;
+
+  if ret.status >= 0
+    fprintf(... 
+      'test=%s val=%.3f loc=%.3f neval=%d time=%.3fs status=%d method=%s\n',...
+       c.name, ret.val, ret.loc, ret.neval, t1, ret.status, ret.method...
+    ) ;
+  else
+    fprintf(...
+      'test=%s status=fail/%s method=%s\n', ...
+       c.name, ret.dstatus, ret.method...
+    ) ;
+  end
+
+end
