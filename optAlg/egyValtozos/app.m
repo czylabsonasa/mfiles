@@ -1,5 +1,8 @@
-
+clc ;
+clf ;
 clear all ;
+
+
 funlib ;
 
 

@@ -1,6 +1,10 @@
 """Python program for golden section search.  This implementation
    does not reuse function evaluations and assumes the minimum is c
    or d (not on the edges at a or b)"""
+
+# forrás: wikipédia
+
+
 import math
 
 gr = (math.sqrt(5) + 1) / 2
