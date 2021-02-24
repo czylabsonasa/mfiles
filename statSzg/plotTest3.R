@@ -35,7 +35,12 @@ plot(
 )
 
 
-legend(-4,1.5, legend=c("cos(x)", "cos(2x)","cos(3x)"), col=c("blue","red","green"), lty=1)
+legend(
+  -4,1.5, # ez lehet string is: pl "topleft"
+  legend=c("cos(x)", "cos(2x)","cos(3x)"), 
+  col=c("blue","red","green"), 
+  lty=1
+)
 
 
 

@@ -2,6 +2,7 @@ clear all ;
 clf ;
 
 f = @(x,y) x.^3 + y.^3 - 3*x - 3*y ;
+
 fV = @(v) f(v(1),v(2)) ;
 dfx = @(x,y) 3*x.^2-3 ;
 dfy = @(x,y) 3*y.^2-3 ;
@@ -42,7 +43,7 @@ hold on ;
 quiver(X2,Y2,-dfx(X2,Y2),-dfy(X2,Y2)) ;
 axis equal ;
 
-x0 = [0.5; 0.5] ;
+% x0 = [0.5; 0.5] ;
 % [loc, val, flag, out] = fminsearch(fv, x0) ;
 % [loc, val, flag, out] = fminunc(fV, x0) ;
 

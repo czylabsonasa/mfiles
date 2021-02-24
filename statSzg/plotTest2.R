@@ -7,10 +7,11 @@ plot(
   type="l",
   col="blue",
   xlab="x",
-  ylab="f(x)"
+  ylab="y"
 )
 
-par(new=TRUE)
+# par(new=TRUE)
+
 plot(
   xx, cos(2*xx),
   xlim=c(-4,4),
@@ -22,7 +23,13 @@ plot(
 )
 
 
-legend(-4,1.5, legend=c("cos(x)", "cos(2x)"), col=c("blue","red"), lty=1)
+legend(
+  # -4,1.5, 
+  "topleft",
+  legend=c("cos(x)", "cos(2x)"), 
+  col=c("blue","red"), 
+  lty=1
+)
 
 
 

@@ -21,8 +21,9 @@ Gx = Gx ./ L ;
 Gy = Gy ./ L ;
 
 quiver(X,Y,Gx,Gy) ;
+axis equal ;
 
-x0 = [0.5; 0.5] ;
+% x0 = [0.5; 0.5] ;
 % [loc, val, flag, out] = fminsearch(fv, x0) ;
 % [loc, val, flag, out] = fminunc(fV, x0) ;
 
