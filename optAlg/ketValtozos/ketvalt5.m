@@ -56,7 +56,7 @@ while true
   df1 = dfV(x1) ;
   if norm(df1)<dftol flag=2 ;break ; end
   if abs(f1-f0)<ftol flag=3; break ; end
-  if abs(x1-x0)<xtol flag=4; break ; end
+  if norm(x1-x0)<xtol flag=4; break ; end
   x0 = x1 ;
   f0 = f1 ;
   df0 = df1 ;
