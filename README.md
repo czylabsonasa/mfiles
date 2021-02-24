@@ -1,1 +1,1 @@
-## néhány program
+## néhány programocska
