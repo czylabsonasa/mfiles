@@ -29,10 +29,17 @@ axis equal ;
 
 % egyszerű gradiens alapú vonalmenti keresés
 % Armijo feltétel
+% a par nevu struct-ot adjuk at a módszernek
 par.alfa0 = 0.99 ;
 par.c1 = 0.6 ;
 par.ro = 0.5 ;
 par.fun = fV ;
+
+% megállási feltételek
+ftol = 1e-6 ;
+dftol = 1e-3 ;
+xtol = 1e-9 ;
+alfatol = 1e-9 ;
 
 x0 = [0.5; 0.8] ; % próbáljuk különböző kezdőpontokból
 f0 = fV(x0) ;
@@ -43,13 +50,13 @@ while true
   nstep = nstep + 1 ;
   p = -df0 ; 
   alfa = armijo(x0, f0, df0, p, par) ;
-  if alfa<1e-9  flag=1; break ; end
+  if alfa<alfatol  flag=1; break ; end
   x1 = x0 + alfa*p ;
   f1 = fV(x1) ;
   df1 = dfV(x1) ;
-  if norm(df1)<1e-6 flag=2 ;break ; end
-  % if abs(f1-f0)<1e-9 flag=3; break ; end
-  if abs(x1-x0)<1e-9 flag=4; break ; end
+  if norm(df1)<dftol flag=2 ;break ; end
+  if abs(f1-f0)<ftol flag=3; break ; end
+  if abs(x1-x0)<xtol flag=4; break ; end
   x0 = x1 ;
   f0 = f1 ;
   df0 = df1 ;
@@ -60,15 +67,14 @@ fprintf("\nuser:\t x=(%.3f,%.3f) flag=%d nstep=%d\n", x0(1), x0(2), flag, nstep 
 [loc, val, flag, out] = fminsearch(fV, x0) ;
 fprintf("\nfminisearch:\t x=(%.3f,%.3f) flag=%d nstep=%d\n", loc(1), loc(2), flag, out.iterations ) ;
 
+[loc, val, flag, out] = fminunc(fV, x0) ;
+fprintf("\nfminunc:\t x=(%.3f,%.3f) flag=%d nstep=%d\n", loc(1), loc(2), flag, out.iterations ) ;
 
 
 
 
 
-
-
-
-
+% ha szkriptet csinálunk a végén kell lenni a definícióknak
 function alfa=armijo(x,fx,dfx,p,par)
   alfa = par.alfa0 ;
   c1 = par.c1 ;
