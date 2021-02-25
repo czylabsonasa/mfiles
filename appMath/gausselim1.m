@@ -32,7 +32,6 @@ function printout(A)
   r = s(1) ;
   c = s(2) ;
   C=cell(r,c) ;
-  mx = 0 ; % max len of rat form
   for i=1:r
     for j=1:c
       C{i,j}=strtrim(rats(A(i,j))) ;
