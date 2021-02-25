@@ -1,6 +1,6 @@
-function gausselimWS(A)
+function gausselim1(A)
 % 
-% Gauss-elimination without swap (=WS) on matrix A.
+% Gauss-elimination without swap on matrix A.
 % Only for playing with small integer matrices.
 % 
   s = size(A) ;

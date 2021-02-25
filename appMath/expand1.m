@@ -1,10 +1,10 @@
 function expand1(x, d, step)
-% expand2(x,d,step)                                                             
+% expand1(x,d,step)                                                             
 % A highly ineffective and unreliable binary expander
 % The number 'x'<1 with 'd' decimal digits will be expanded to 'step' binary digits
 % 
 % Usage:
-% >> expand(0.333,3,4)
+% >> expand1(0.333,3,4)
 % 
 %                             0 | 333
 %                             ------------
