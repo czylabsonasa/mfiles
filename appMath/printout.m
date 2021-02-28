@@ -15,6 +15,4 @@ function printout(A)
     end
     fprintf('\n') ;
   end
-  disp('press a key to continue') ;
-  pause ;
 end

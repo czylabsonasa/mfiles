@@ -8,6 +8,7 @@ function gausselim1(A)
   c = s(2) ;
   fprintf('\nphase 0:\n') ;
   printout(A) ;
+  paktc() ;
   for i=1:r-1
     fprintf('\nphase %d:\n', i) ;
     if abs(A(i,i))==0
@@ -24,5 +25,6 @@ function gausselim1(A)
       A(j,:) = A(j,:) -p*A(j,i)*A(i,:) ;
     end
     printout(A) ;
+    paktc() ;
   end
 end
