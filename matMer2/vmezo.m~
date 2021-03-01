@@ -1,0 +1,20 @@
+clear all ; 
+clf ;
+
+f = @(t, y)  t ./ y.^2 + y ./ t ;
+
+tb = 0.5:0.03:2 ;
+yb = -0.5:0.2:0.5 ;
+
+[T,Y] = meshgrid(tb, yb) ;
+dY = f(T, Y) ;
+dT = ones(size(dY)) ;
+quiver(T,Y, dT, dY) ;
+
+
+mo = @(t) nthroot(4-3./t).* t ;
+
+xx = linspace(0.5,2) ;
+hold on ;
+plot(xx, mo(xx)) ;
+
