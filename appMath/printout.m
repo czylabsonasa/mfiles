@@ -8,6 +8,7 @@ function printout(A)
       C{i,j}=strtrim(rats(A(i,j))) ;
     end
   end
+  fprintf('\n') ;
   CC=pad(C,'left') ;
   for i=1:r
     for j=1:c

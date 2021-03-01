@@ -13,10 +13,11 @@ function gausselim1(A)
     fprintf('\nphase %d:\n', i) ;
     if abs(A(i,i))==0
       if any(abs(A(i+1:end,i))>0)
-        fprintf('no way w/o swap...exiting...');
-        return ;
+        fprintf('\n  no way w/o swap...\n');
+        paktc() ;
+        break ;
       else
-        fprintf('no need to eliminate.\n');
+        fprintf('\n  no need to eliminate.\n');
         paktc() ;
         continue ;
       end
@@ -28,6 +29,4 @@ function gausselim1(A)
     printout(A) ;
     paktc() ;
   end
-  fprintf('\n') ;
- 
 end
