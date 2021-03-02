@@ -21,7 +21,7 @@ pontos=mo(2)
 
 ylim([0.1,1.1]) ;
 
-lepes=100;
+lepes=200;
 
 
 % Euler
@@ -32,7 +32,7 @@ for i=1:lepes
   y0=y0+delta*f(t0,y0);
   t0=t0+delta;
 end
-y0
+abs(y0-pontos)
 
 
 % modEuler
@@ -47,5 +47,5 @@ for i=1:lepes
   y0=y0+f(tm,ym)*delta; 
   t0=t0+delta;
 end
-y0
+abs(y0-pontos)
 
