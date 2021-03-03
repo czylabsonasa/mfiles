@@ -55,9 +55,8 @@ for pt=pontok
     if nit>maxit flag = "maxit" ; break ; end
 
 %    alfa = inv(d2fV(x0)) ; 
-
-    d2fV(x0)
-    pause();
+%    d2fV(x0)
+%    pause();
     p = d2fV(x0) \ (-df0) ;
     x1 = x0 + p ;
     % x1 = x0 - alfa*df0 ;
