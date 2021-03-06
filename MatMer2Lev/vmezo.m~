@@ -1,0 +1,25 @@
+clear 
+
+f = @(t,y) y + t - cos(t) ;
+
+
+
+tb = linspace(-1,2,20);
+yb = linspace(-5,7,20);
+[T, Y] = meshgrid(tb, yb) ;
+
+dY = f(T,Y) ;
+dT = ones(size(dY)) ;
+
+quiver(T,Y, dT, dY) ;
+
+% y(-1)=0
+sol1 = @(t)exp(-t).*(t.*2.0-cos(t)+sin(t)+2.0).*(-1.0./2.0)-exp(1.0).*(cos(1.0)+sin(1.0)).*(1.0./2.0) ;
+
+xx = linspace(-1,2) ;
+
+hold on ;
+plot(xx, sol1(xx))
+
+
+axis square
