@@ -27,11 +27,14 @@ function gausselim2(A)
       lji = p*A(j,i) ;
       if abs(lji)>0
         A(j,:) = A(j,:) - lji*A(i,:) ;
+        A(j,i)=0 ;
+
         fprintf('\n    subtract %s times the %d. row from the %d. row\n', strtrim(rats(lji)), i, j);
         printout(A) ;
       else
         fprintf('\n    nothing to eliminate\n');
       end
+      
       paktc() ;
     end
   end

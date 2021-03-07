@@ -25,6 +25,7 @@ function gausselim1(A)
     p = 1.0/A(i,i) ;
     for j=(i+1):r
       A(j,:) = A(j,:) -p*A(j,i)*A(i,:) ;
+      A(j,i)=0; % avoid rounding errors
     end
     printout(A) ;
     paktc() ;

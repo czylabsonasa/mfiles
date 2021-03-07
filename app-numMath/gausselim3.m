@@ -34,11 +34,14 @@ function [L,U]=gausselim3(A)
       L(j,i)=lji ;
       if abs(lji)>0
         U(j,:) = U(j,:) - lji*U(i,:) ;
+        U(j,i)=0 ;
+
         fprintf('\n    subtract %s times the %d. row from the %d. row\n', strtrim(rats(lji)), i, j);
         printout([L,U]) ;
       else
         fprintf('\n    nothing to eliminate\n');
       end
+      
       paktc() ;
     end
   end
