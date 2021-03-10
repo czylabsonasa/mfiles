@@ -1,4 +1,4 @@
-function csakrajz(feladat,scale)
+function myplot(feladat,scale)
   fprintf("\nrajzolás\n");
 
   

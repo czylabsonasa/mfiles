@@ -1,5 +1,5 @@
-function mynewtonRAW(feladat,pt0,stopcond)
-  fprintf("\nNewton sima\n");
+function mynewtonFMU(feladat,pt0,stopcond)
+  fprintf("\nNewton FMU\n");
 
   ftol=stopcond.ftol ;
   dftol=stopcond.dftol ;
@@ -56,10 +56,13 @@ function mynewtonRAW(feladat,pt0,stopcond)
     nit = nit + 1 ;
     if nit>maxit, flag = "maxit" ; break ; end
 
-    p = d2fV(x0) \ (-df0) ;
-    x1 = x0 + p ;
+    p = d2fV(x0) \ (-df0) ; 
+    [alfa,f1,~,out] = fminunc(@(a) fV(x0+a*p),0,...
+        optimoptions('fminunc','Display','none')) ;
+    fcount = fcount + out.funcCount ;
+    x1 = x0 + alfa*p ;
 
-    f1 = fV(x1) ;
+    % f1 = fV(x1) ; % ez mar megvan
     df1 = dfV(x1) ;
     fcount = fcount + 1+2+4 ; % 
     plot([x0(1),x1(1)], [x0(2),x1(2)], '-xk') ; axis square ;
@@ -67,10 +70,10 @@ function mynewtonRAW(feladat,pt0,stopcond)
 
     if norm(df1)<dftol
       flag = "dftol" ;
-    elseif abs(f1-f0)<ftol
-      flag = "ftol" ;
-    elseif norm(x1-x0)<xtol
-      flag = "xtol" ;
+%     elseif abs(f1-f0)<ftol
+%       flag = "ftol" ;
+%     elseif norm(x1-x0)<xtol
+%       flag = "xtol" ;
     end
     x0 = x1 ;
     f0 = f1 ;
