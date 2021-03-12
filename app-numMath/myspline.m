@@ -1,13 +1,16 @@
-xx = linspace(-5,5,11) ;
-yy = R(xx) ;
-xxx = linspace(-5,5,200) ;
 clf ;
 hold off
-plot(xxx, R(xxx)) ;
+
+R=@(t) 1 ./ (1+t.^2);
+
+xx = linspace(-5,5,200) ;
+plot(xx, R(xx)) ;
 hold on ;
 
-msp = spline(xx, [0 yy 0]) ;
-yyy = ppval(msp, xxx) ;
-plot( xxx,yyy) ;
+t = linspace(-5,5,11) ;
+f = R(t) ;
+msp = spline(t, [0 f 0]) ;
 
-% plot( xxx, spline(xx, [0 yy 0], xxx ) )
+plot(xx,ppval(msp, xx)) ;
+
+% plot( xx, spline(t, [0 f 0], xx ))
