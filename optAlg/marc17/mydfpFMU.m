@@ -42,10 +42,6 @@ function mydfpFMU(feladat,pt0)
 
   hold on ;
 
-  f0 = fV(x0) ;
-  df0 = dfV(x0) ;
-
-
   plot(x0(1), x0(2), 'or') ; axis square ;
   
   nit = 0 ;
@@ -82,11 +78,9 @@ function mydfpFMU(feladat,pt0)
     x2 = x1 + alfa*p ;
     
     
-    if f2<f1
     x1 = x2 ;
     f1 = f2 ;
     df1 = dfV(x2) ;
-    end
     
     fcount = fcount + 2 ; % 
     
