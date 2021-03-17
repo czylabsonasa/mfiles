@@ -1,4 +1,4 @@
-function ret=myplacement1sol(pontok)
+function ret=myplacement1(pontok)
   % név
   ret.fname="2d-elhelyezés - minimális össztávolság (2 normában)" ;
 
@@ -11,12 +11,9 @@ function ret=myplacement1sol(pontok)
   f = @(x,y) ff(x,y,pontok);
   fV = @(v) ffV(v,pontok) ;
   dfV =@(v) dffV(v,pontok);
-  % ide meg kellene a d2fv is
   
   ret.f=f ;
   ret.fV=fV ;
-%   ret.dfx=dfx ; % ezeket nem nagyon hasznaljuk kulon
-%   ret.dfy=dfy ;
   ret.dfV=dfV ;
   
   % a tartomany
@@ -37,31 +34,24 @@ function ret=myplacement1sol(pontok)
 
 end
 
+% a fv definíciója vektor helyen 
 function val=ffV(v,pt)
-  val=sum(sqrt(sum( (v-pt).^2) ));
+  val=sum(sqrt(sum( (v-pt).^2) )) ;
 end
 
-function val=dffV(v,pt)
-  nrm = sqrt(sum((v-pt).^2));
-  val=sum( (v-pt) ./ nrm , 2);
-end
-
-function val=dffxy(x,y,pt)
-  val=dffV([x;y],pt) ;
-end
-
-
+% a fv definíciója 2 valtozos esetben
 function val=ffxy(x,y,pt)
-  val=ffV([x;y],pt);
+  val=ffV([x;y],pt) ;
 end
 
+% gradiens
+function val=dffV(v,pt)
+  val=1 ;
+end
+
+
+
+% X,Y lehet vektor-matrix
 function val=ff(X,Y,pt)
-  XX=X(:);
-  YY=Y(:);
-  n=length(XX);
-  val=zeros(n,1);
-  for i=1:n
-    val(i)=ffV([XX(i);YY(i)], pt);
-  end
-  val=reshape(val,size(X)) ;
+  val=1;
 end
