@@ -1,11 +1,14 @@
 clear ;
-% f = @(t,y) (-t+2).*y + (t.^3 - t.^2 + 3*t + 3) ;
-f = @(t,y) cos(-2*t).*y + sin(3*t) ;
+% clf ;
+
+f = @(t,y) sin(3*t)*y + (2*t-1) ;
 
 
-t0 = 1 ; tv = 5 ;
-y0 = -1 ;
-n = 100 ;
+t0 = 0 ; y0 = 2 ;
+tv = 1 ;
+
+n = 6 ;
+
 h = (tv - t0) / n ;
 
 y = y0 ; t = t0 ;
@@ -14,6 +17,7 @@ for k=1:n
   t = t + h ;
 end
 fprintf("sima       \t %.4f\n",y) ;
+return ;
 
 n = floor(n/2) ;
 h = (tv - t0 )/n ;
