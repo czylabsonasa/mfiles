@@ -1,5 +1,5 @@
 function mydfpFMU(feladat,pt0)
-  fprintf("\nDFP + fminunc\n");
+  fprintf("\nDavidon-Fletcher-Powell + fminunc\n");
 
   stopcond=mystopcond() ;
   ftol=stopcond.ftol ;

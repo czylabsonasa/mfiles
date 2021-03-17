@@ -1,5 +1,5 @@
-function mydfpFMU(feladat,pt0)
-  fprintf("\nDFP + fminunc\n");
+function mybfgsFMU(feladat,pt0)
+  fprintf("\nBroyden-Fletcher-Goldfarb-Shanno + fminunc\n");
 
   stopcond=mystopcond() ;
   ftol=stopcond.ftol ;
@@ -57,7 +57,8 @@ function mydfpFMU(feladat,pt0)
     nit = nit + 1 ;
     if nit>maxit, flag = "maxit" ; break ; end
 
-    p = (-df0)
+    % ez ugyanaz mint a DFP-ben
+    p = (-df0) ;
     
     [alfa,f1,~,out] = fminunc(@(a) fV(x0+a*p),0.1,...
         optimoptions('fminunc','Display','none')) ;
@@ -69,10 +70,11 @@ function mydfpFMU(feladat,pt0)
     dx = x1 - x0 ;
     dg = df1 - df0 ;
     
-    
     fcount = fcount + 2 ; % 
     
-    A = A + (dx*dx')/(dx'*dg) - (A*(dg*dg')*A)/(dg'*A*dg) 
+    % itt ugy csinalja hogy megprobal kozel lenni 
+    % a Hesse matrix-hoz A-val
+    A = A + (dx*dx')/(dx'*dg) - (A*(dg*dg')*A)/(dg'*A*dg) ;
     p = A * (-df1) ; % ebben az iranyban keres
     
     [alfa,f2,~,out] = fminunc(@(a) fV(x1+a*p),0.1,...
@@ -82,10 +84,11 @@ function mydfpFMU(feladat,pt0)
     x2 = x1 + alfa*p ;
     
     
+    if f2<f1
     x1 = x2 ;
     f1 = f2 ;
     df1 = dfV(x2) ;
-    if f1
+    end
     
     fcount = fcount + 2 ; % 
     
