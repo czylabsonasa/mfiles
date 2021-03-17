@@ -1,4 +1,4 @@
-function ret=myplacement2(pontok)
+function ret=myplacement2sol(pontok)
   % név
   ret.fname="2d-elhelyezés - minimális sugarú lefedő kör keresése" ;
 
@@ -38,17 +38,30 @@ function ret=myplacement2(pontok)
 end
 
 function val=ffV(v,pt)
+  val=max(sqrt(sum( (v-pt).^2)));
 end
 
+function val=ffxy(x,y,pt)
+  val=ffV([x;y],pt);
+end
+
+
 function val=dffV(v,pt)
+  val=1 ;
 end
 
 function val=dffxy(x,y,pt)
+  val=1 ;
 end
 
-
-function val=ffxy(x,y,pt)
-end
 
 function val=ff(X,Y,pt)
+  XX=X(:);
+  YY=Y(:);
+  n=length(XX);
+  val=zeros(n,1);
+  for i=1:n
+    val(i)=ffV([XX(i);YY(i)], pt);
+  end
+  val=reshape(val,size(X)) ;
 end
