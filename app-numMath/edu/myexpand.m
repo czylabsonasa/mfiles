@@ -1,10 +1,10 @@
 function myexpand(a, b, step)
-% expand2(a,b,step)                                                             
+% myexpand(a,b,step)                                                             
 % A highly ineffective and unreliable binary expander
 % The fraction a/b will be expanded to step binary digits
 % 
 % Usage:
-% >> expand2(1,3,10)
+% >> myexpand(1,3,10)
 %
 %                             1 / 3 = 0.0101010101
 %
