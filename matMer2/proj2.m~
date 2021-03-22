@@ -7,15 +7,13 @@ f=@(t,y) log(y)+cos(t)./(t+1);
 t0=0; tv=7; y0=2; 
 
 
-fprintf("lépés\tEuler\tRK1\n") ;
-
 lepesek=[5,10,20] ;
 for it=1:3
   lepes=lepesek(it) ;
   
   [tE,yE]=Euler(f,[t0,tv],y0,lepes);
   [tR,yR]=RK1(f,[t0,tv],y0,lepes);
-  subplot(3,1,it) ;
+  sublot(3,1,it) ;
   plot(tE,yE,'*');
   hold on
   plot(tR,yR,'.');
@@ -23,8 +21,7 @@ for it=1:3
   plot(t45,y45,'d');
 
   legend('Euler','RK1','ode45', 'location','northeastoutside')
-  fprintf("%d\t%.4f\t%.4f\n",...
-    lepes,abs(yE(end)-y45(end)),abs(yR(end)-y45(end))) ;
+  fprintf("abs(Euler-ode45) / abs(RK1-ode): %.4f", abs(yE(end)-y45(end))/ )
 end
 
 
@@ -51,4 +48,5 @@ function [t,y]=RK1(f,tr,y0,lepes)
     y(it+1)=y(it)+h*k2;
   end
 end
-  
+
+
