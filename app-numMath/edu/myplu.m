@@ -1,4 +1,4 @@
-function [P,L,U]=gaussplu(A)
+function [P,L,U]=myplu(A)
 % gaussian elimination with swap
 % swap: only if neccessary and with the first 'good' row
 % (it is not the partial pivoting)
@@ -13,31 +13,29 @@ function [P,L,U]=gaussplu(A)
   perm = (1:r)' ;
 
   if not(r == c ) 
-    fprintf('A must be square') ;
+    myprint('A must be square',[]) ;
     return ;
   end
   L = eye(r,r) ;
 
-  fprintf('\nphase 0:\n') ;
-  printout([perm,L,U]) ;
+  myprint('\nphase 0:\n', [perm,L,U]) ;
   for i=1:r-1
     nz = find(U(i+1:end,i) ) ;
     if length(nz)<1
-      fprintf('\n  pre-phase: no need to eliminate\n') ;
-      paktc() ;
+      myprint('\n  pre-phase: no need to eliminate\n', [] )
       continue ;
     end
     
     fprintf('\nphase %d:\n', i) ;
     if abs(U(i,i))==0
       j = i+nz(1) ;
-      fprintf('\n  pre-phase: swap with the %d. row\n', j);
+      myprint(sprintf('\n  pre-phase: swap the %d. row with the %d. row\n', i, j), []);
       perm([i,j]) = perm([j,i]) ;
       U([i,j],:) = U([j,i],:) ;
       L([i,j],1:i-1) = L([j,i],1:i-1) ;
     end
     
-    printout([perm,L,U]) ;
+    myprint('',[perm,L,U]) ;
     
     p = 1.0/U(i,i) ;
     for j=(i+1):r
@@ -48,13 +46,11 @@ function [P,L,U]=gaussplu(A)
         U(j,:) = U(j,:) - lji*U(i,:) ;
         U(j,i)=0 ;
   
-        fprintf('\n    subtract %s times the %d. row from the %d. row\n', strtrim(rats(lji)), i, j);
-        printout([perm,L,U]) ;
+        myprint(sprintf('\n    subtract %s times the %d. row from the %d. row\n', strtrim(rats(lji)), i, j),...
+          [perm,L,U]) ;
       else
-        fprintf('\n    nothing to eliminate\n');
+        myprint('\n    nothing to eliminate\n', []);
       end
-
-      paktc() ;
     end
   end
   P = eye(r) ;

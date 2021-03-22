@@ -1,4 +1,4 @@
-function [L,U]=gausselim3(A)
+function [L,U]=mylu(A)
 % 
 % LU - also print the L 
 % 
@@ -7,23 +7,20 @@ function [L,U]=gausselim3(A)
   r = s(1) ;
   c = s(2) ;
   if not(r == c ) 
-    fprintf('A must be square') ;
+    myprint('A must be square',[]) ;
     return ;
   end
   L = eye(r,r) ;
 
-  fprintf('\nphase 0:\n') ;
-  printout([L,U]) ;
+  myprint('\nphase 0:\n',[L,U]) ;
   for i=1:r-1
     fprintf('\nphase %d:\n', i) ;
     if abs(U(i,i))==0
       if any(abs(U(i+1:end,i))>0)
-        fprintf('\n  no way w/o swap...exiting...\n');
-        paktc() ;
-        break ;
+        myprint('\n  no way w/o swap...exiting...\n',[]);
+        return ;
       else
-        fprintf('\n  no need to eliminate\n');
-        paktc() ;
+        myprint('\n  no need to eliminate\n',[]);
         continue ;
       end
     end
@@ -36,13 +33,11 @@ function [L,U]=gausselim3(A)
         U(j,:) = U(j,:) - lji*U(i,:) ;
         U(j,i)=0 ;
 
-        fprintf('\n    subtract %s times the %d. row from the %d. row\n', strtrim(rats(lji)), i, j);
-        printout([L,U]) ;
+        myprint(sprintf('\n    subtract %s times the %d. row from the %d. row\n', strtrim(rats(lji)), i, j),...
+          [L,U]) ;
       else
-        fprintf('\n    nothing to eliminate\n');
+        myprint('\n    nothing to eliminate\n',[]);
       end
-      
-      paktc() ;
     end
   end
   % here L and U returned according to the head of the function

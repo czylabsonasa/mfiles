@@ -1,4 +1,4 @@
-function expand2(a, b, step)
+function myexpand(a, b, step)
 % expand2(a,b,step)                                                             
 % A highly ineffective and unreliable binary expander
 % The fraction a/b will be expanded to step binary digits

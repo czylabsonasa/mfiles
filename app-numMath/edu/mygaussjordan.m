@@ -1,4 +1,4 @@
-function iA=gaussplu(A)
+function iA=mygaussjordan(A)
 % inverse through Gauss-Jordan elimination
 % returns an empty matrix in case of no inverse
 
@@ -14,9 +14,7 @@ function iA=gaussplu(A)
   W = [A, eye(r,r)] ; % the 'W'ork
   succ=1;
   
-  fprintf('\nforward elimination\n') ;  
-  fprintf('\nphase 0:\n') ;
-  printout(W) ;
+  myprint('\nforward elimination\n\nphase 0:\n', W) ;
   for i=1:r
     nz = find(W(i+1:end,i) ) ;
         
@@ -28,11 +26,11 @@ function iA=gaussplu(A)
         break;
       end
       j = i+nz(1) ;
-      fprintf('\n  pre-phase: swap with the %d. row\n', j);
+      fprintf(sprintf('\n  pre-phase: swap the %d. row with the %d. row\n', i,j),[])
       W([i,j],:) = W([j,i],:) ;
     end
     
-    printout(W) ;
+    myprint('',W) ;
     
     p = 1.0/W(i,i) ;
     for j=(i+1):r
@@ -42,13 +40,12 @@ function iA=gaussplu(A)
         W(j,:) = W(j,:) - lji*W(i,:) ;
         W(j,i)=0 ;
 
-        fprintf('\n    subtract %s times the %d. row from the %d. row\n', strtrim(rats(lji)), i, j);
-        printout(W) ;
+        myprint(sprintf('\n    subtract %s times the %d. row from the %d. row\n', strtrim(rats(lji)), i, j),...
+          W) ;
       else
-        fprintf('\n    nothing to eliminate\n');
+        myprint('\n    nothing to eliminate\n',[]);
       end
       
-      paktc() ;
     end
   end
 
@@ -57,16 +54,13 @@ function iA=gaussplu(A)
   end
 
     
-  fprintf('\nbackward elimination\n') ;  
-  fprintf('\nphase 0:\n') ;
-  printout(W) ;
+  myprint('\nbackward elimination\n\nphase 0:\n', W)
   for i=r:-1:1
     fprintf('\nphase %d:\n', i) ;
     p = 1.0/W(i,i) ;
-    fprintf('\n  pre-phase: normalize.\n');
     W(i,:) = p*W(i,:) ;
 
-    printout(W) ;
+    myprint('\n  pre-phase: normalize.\n', W) ;
     
     for j=i-1:-1:1
       fprintf('\n  sub-phase %d/%d:\n', i, j) ;
@@ -75,13 +69,12 @@ function iA=gaussplu(A)
         W(j,:) = W(j,:) - lji*W(i,:) ;
         W(j,i)=0 ;
 
-        fprintf('\n    subtract %s times the %d. row from the %d. row\n', strtrim(rats(lji)), i, j);
-        printout(W) ;
+        myprint( sprintf('\n    subtract %s times the %d. row from the %d. row\n', strtrim(rats(lji)), i, j),...
+          W) ;
       else
-        fprintf('\n    nothing to eliminate\n');
+        myprint('\n    nothing to eliminate\n',[]);
       end
       
-      paktc() ;
     end
   end
   
