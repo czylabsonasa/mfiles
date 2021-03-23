@@ -3,30 +3,33 @@ clf;
 clear;
 
 % explicit alak jobboldala: f
-fv=@(t,v) [v(1)*v(2)+2*v(1), v(1)*v(2)*0.5 - 2*v(2)]' ;
-t0=0; tv=100; y0=[2,1]'; 
+a=0.01; 
+b=0.02;
+% v(1) prey, v(2) predator
+fv=@(t,v) [v(1)*(1-a*v(2)), v(2)*(-1+b*v(1))]' ;
+t0=0; tv=30; y0=[20,20]'; 
 
-% fprintf("abszolút hiba\n") ;
-% fprintf("lépés\tEuler\tRK1\n") ;
-
-lepesek=[32,64,128]*16 ;
+lepesek=[1,2,4]*64 ;
 for it=1:length(lepesek)
   lepes=lepesek(it) ;
   
-  [tE,yE]=EulerV(fv,[t0,tv],y0,lepes);
-  %[tR,yR]=RK1V(fv,[t0,tv],y0,lepes);
-  subplot(3,1,it) ;
-  plot(tE,yE(:,1),'*',tE,yE(:,2),'.');
+  %[tE,yE]=EulerV(fv,[t0,tv],y0,lepes);
+  [t,y]=RK1V(fv,[t0,tv],y0,lepes);
+  subplot(4,1,it) ;
+  plot(t,y(:,1),'b',t,y(:,2),'r');
 
-  %hold on
-  %plot(tR,yR,'.');
-  %[t45,y45]=ode45(fv,[t0,tv],y0);
-  %plot(t45,y45(:,1),'d');
 
-%   legend('Euler','RK1','ode45', 'location','northeastoutside')
-%   fprintf("%d\t%.4f\t%.4f\n",...
-%     lepes,abs(yE(end,1)-y45(end,1)),abs(yR(end,1)-y45(end,1))) ;
+  legend('prey','predator','location','northeastoutside')
+  title(sprintf("RK1, lepes=%d",lepes))
 end
+
+[t,y]=ode23(fv,[t0,tv],y0);
+subplot(4,1,4) ;
+plot(t,y(:,1),'b',t,y(:,2),'r');
+legend('prey','predator','location','northeastoutside')
+title("ode23")
+
+
 
 
 % Euler módszer
@@ -54,4 +57,3 @@ function [t,y]=RK1V(f,tr,y0,lepes)
   end
   y=y';
 end
-  
