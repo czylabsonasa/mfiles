@@ -24,7 +24,8 @@ for it=1:3
 
   legend('Euler','RK1','ode45', 'location','northeastoutside')
   fprintf("%d\t%.4f\t%.4f\n",...
-    lepes,abs(yE(end)-y45(end)),abs(yR(end)-y45(end))) ;
+    lepes,abs(yE(end)-y45(end))/(1+abs(y45(end))),...
+    abs(yR(end)-y45(end))/(1+abs(y45(end))));  
 end
 
 

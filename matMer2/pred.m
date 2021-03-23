@@ -3,29 +3,29 @@ clf;
 clear;
 
 % explicit alak jobboldala: f
-f=@(t,y,dy) -dy-3*y+t-1;
-fv=@(t,v) [v(2), f(t,v(1),v(2))]'; 
-t0=0; tv=1; y0=[2,0]'; lepes=50;
+fv=@(t,v) [v(1)*v(2)+2*v(1), v(1)*v(2)*0.5 - 2*v(2)]' ;
+t0=0; tv=100; y0=[2,1]'; 
 
-fprintf("abszolút hiba\n") ;
-fprintf("lépés\tEuler\tRK1\n") ;
+% fprintf("abszolút hiba\n") ;
+% fprintf("lépés\tEuler\tRK1\n") ;
 
-lepesek=[4,8,16,32,64,128] ;
+lepesek=[32,64,128]*16 ;
 for it=1:length(lepesek)
   lepes=lepesek(it) ;
   
   [tE,yE]=EulerV(fv,[t0,tv],y0,lepes);
-  [tR,yR]=RK1V(fv,[t0,tv],y0,lepes);
-  subplot(2,3,it) ;
-  plot(tE,yE(:,1),'*');
-  hold on
-  plot(tR,yR(:,1),'.');
-  [t45,y45]=ode45(fv,[t0,tv],y0);
-  plot(t45,y45(:,1),'d');
+  %[tR,yR]=RK1V(fv,[t0,tv],y0,lepes);
+  subplot(3,1,it) ;
+  plot(tE,yE(:,1),'*',tE,yE(:,2),'.');
 
-  legend('Euler','RK1','ode45', 'location','northeastoutside')
-  fprintf("%d\t%.4f\t%.4f\n",...
-    lepes,abs(yE(end,1)-y45(end,1)),abs(yR(end,1)-y45(end,1))) ;
+  %hold on
+  %plot(tR,yR,'.');
+  %[t45,y45]=ode45(fv,[t0,tv],y0);
+  %plot(t45,y45(:,1),'d');
+
+%   legend('Euler','RK1','ode45', 'location','northeastoutside')
+%   fprintf("%d\t%.4f\t%.4f\n",...
+%     lepes,abs(yE(end,1)-y45(end,1)),abs(yR(end,1)-y45(end,1))) ;
 end
 
 
