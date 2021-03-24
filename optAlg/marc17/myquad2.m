@@ -1,15 +1,15 @@
-function ret=myquad1()
+function ret=myquad2()
   % név
-  ret.fname="kvadratikus 1" ;
+  ret.fname="kvadratikus 2" ;
   ret.numvar=2;
   
-  % kvadratikus % poz definit
-  AA = [ 8 6; ...
-         6 8] ;
+  % kvadratikus % neg definit
+  AA = [ -8 6; ...
+         6 -8] ;
   bb = [ 7 ; -3] ;
   cc = -1 ;
 
-  f = @(x,y) 4*x.^2 + 6*x.*y + 4*y.^2 + 7*x - 3*y -1 ;
+  f = @(x,y) -4*x.^2 + 6*x.*y + -4*y.^2 + 7*x - 3*y -1 ;
   fV = @(v) 0.5*v'*AA*v + bb'*v + cc ;
   dfV =@(v) AA*v + bb ;
   d2fV = @(v) AA ;
@@ -21,11 +21,11 @@ function ret=myquad1()
   
   
   % a tartomany
-  xmin = -5 ; 
-  xmax = 5 ;
+  xmin = -10 ; 
+  xmax = 10 ;
   xb = linspace(xmin,xmax,50) ;
-  ymin = -5 ; 
-  ymax = 5 ;
+  ymin = -10 ; 
+  ymax = 10 ;
   yb = linspace(ymin,ymax,50) ;
 
   ret.xmin = xmin ; 

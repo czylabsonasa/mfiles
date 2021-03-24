@@ -1,3 +1,4 @@
+% befejezetlen !!!
 function mybfgsFMU(feladat,pt0)
   fprintf("\nBroyden-Fletcher-Goldfarb-Shanno + fminunc\n");
 
