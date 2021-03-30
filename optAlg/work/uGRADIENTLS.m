@@ -1,7 +1,8 @@
-function xx=uNEWTON(feladat,x0)
-  fprintf("\nNewton\n");
+function xx=uGRADIENTLS(feladat,x0,lsearch,a0)
+  fprintf("\nmódszer=gradient descent+line search\n");
 
   stopcond=STOPCOND() ;
+  
   ftol=stopcond.ftol ;
   dftol=stopcond.dftol ;
   xtol=stopcond.xtol ;
@@ -9,26 +10,27 @@ function xx=uNEWTON(feladat,x0)
 
   f=feladat.f ;
   df=feladat.df ;
-  d2f=feladat.d2f ;
-
-  xx = [x0] ;
 
   f0 = f(x0) ;
   df0 = df(x0) ;
+
+  xx = [x0];
 
   niter = 0 ;
   flag = "none" ;
 
   while true
     niter = niter + 1 ;
-    if niter>maxit, flag = "maxit" ; break ; end
 
-    p = d2f(x0) \ (-df0) ;
-    x1 = x0 + p ;
+    if niter>maxit flag = "maxit" ; break ; end
+    p=(-df0);
+    [alfa,f1] = lsearch(@(a) f(x0+a*p),a0);
 
-    f1 = f(x1) ;
+
+    x1 = x0 + alfa*p ;
+% x1,f1
+
     df1 = df(x1) ;
-
 
     if norm(df1)<dftol
       flag = "dftol" ;
@@ -38,13 +40,13 @@ function xx=uNEWTON(feladat,x0)
       flag = "xtol" ;
     end
     x0 = x1 ;
-    xx=[xx,x0] ;
+    xx=[xx,x0];
     f0 = f1 ;
     df0 = df1 ;
+    %x0,f0
     if not (flag == "none"), break; end
   end
-
-
+  
   hRESULT(feladat,flag,niter,xx);
   
 end
