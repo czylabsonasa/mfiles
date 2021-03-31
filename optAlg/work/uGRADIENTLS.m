@@ -24,10 +24,12 @@ function xx=uGRADIENTLS(feladat,x0,lsearch,a0)
 
     if niter>maxit flag = "maxit" ; break ; end
     p=(-df0);
-    [alfa,f1] = lsearch(@(a) f(x0+a*p),a0);
+    [alfa,f1] = lsearch(f,df,x0,p,a0);
+
 
 
     x1 = x0 + alfa*p ;
+
 % x1,f1
 
     df1 = df(x1) ;

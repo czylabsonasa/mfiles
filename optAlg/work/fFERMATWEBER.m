@@ -11,16 +11,16 @@ function ret=fFERMATWEBER(pontok)
   % pontok=[2.5 0; 0 0; 4 3; 1 4]' ;
 
   % fuggvenyes resz
-  f = @(x,y) ff(x,y,pontok);
-  fV = @(v) ffV(v,pontok) ;
-  dfV =@(v) dffV(v,pontok);
+  ff = @(x,y) F(x,y,pontok);
+  f = @(v) Fv(v,pontok) ;
+  df =@(v) dFv(v,pontok);
   % ide meg kellene a d2fv is
   
+  ret.ff=ff ;
   ret.f=f ;
-  ret.fV=fV ;
 %   ret.dfx=dfx ; % ezeket nem nagyon hasznaljuk kulon
 %   ret.dfy=dfy ;
-  ret.dfV=dfV ;
+  ret.df=df ;
   
   % a tartomany
   xmin = min(pontok(1,:))-1 ;
@@ -40,31 +40,32 @@ function ret=fFERMATWEBER(pontok)
 
 end
 
-function val=ffV(v,pt)
+function val=Fv(v,pt)
   val=sum(sqrt(sum( (v-pt).^2) ));
 end
 
-function val=dffV(v,pt)
+function val=dFv(v,pt)
   nrm = sqrt(sum((v-pt).^2));
   val=sum( (v-pt) ./ nrm , 2);
 end
 
-function val=dffxy(x,y,pt)
-  val=dffV([x;y],pt) ;
+function val=dFxy(x,y,pt)
+  val=dFFv([x;y],pt) ;
 end
 
 
-function val=ffxy(x,y,pt)
-  val=ffV([x;y],pt);
+function val=Fxy(x,y,pt)
+  val=Fv([x;y],pt);
 end
 
-function val=ff(X,Y,pt)
+function val=F(X,Y,pt)
   XX=X(:);
   YY=Y(:);
   n=length(XX);
   val=zeros(n,1);
   for i=1:n
-    val(i)=ffV([XX(i);YY(i)], pt);
+    val(i)=Fv([XX(i);YY(i)], pt);
   end
   val=reshape(val,size(X)) ;
 end
+

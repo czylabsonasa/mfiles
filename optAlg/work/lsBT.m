@@ -1,22 +1,24 @@
-function [loc, val] = lsBT(f, a0)
+function [loc, val] = lsBT(f,df,x0,p,a0)
   % x0 is ignored
+  L=@(a)f(x0+a*p);
+
   a1=a0;
-  f1=f(a1);
-  f0=f(0);
-  while f1>=f0
+  L1=L(a1);
+  L0=L(0);
+  while L1>=L0
     a1=a1*0.5;
-    f1=f(a1);
+    L1=L(a1);
   end
   % f0 > f1
   a2=0.5*a1;
-  f2=f(a2);
-  while f2<f1
+  L2=L(a2);
+  while L2<L1
     a1=a2;
-    f1=f2;
+    L1=L2;
     a2=0.5*a1;
-    f2=f(a2);
+    L2=L(a2);
   end
 
 
-  loc=a1;val=f1;
+  loc=a1;val=L1;
 end

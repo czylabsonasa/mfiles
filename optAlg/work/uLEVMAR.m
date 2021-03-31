@@ -1,4 +1,6 @@
 function xx=uLEVMAR(feladat,x0)
+% ez egy egyszerű változat
+
   lambda=0.01;
   fprintf("\nmódszer=Levenberg-Marquardt (lambda=%.3f)\n",lambda);
 
