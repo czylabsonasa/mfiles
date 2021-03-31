@@ -8,13 +8,13 @@ f=@(v) fxy(v(1),v(2));
 
 
 
-[loc,val,flag]=fmincon(f,[1,1]',[],[],[1 1;4 1],[1;2],[],[]);
+[loc,val,flag]=fmincon(f,[1,1]',[1 1;4 1],[1;2],[],[],[],[]);
 
 
-%fcontour(fxy);
-[X,Y]=meshgrid(linspace(-5,5,50),linspace(-5,5,50));
-%contour(X,Y,fxy(X,Y),val*[0.1,1,1.2],'b');
-fcontour(fxy,'b','LevelList',val*[0.1,1,1.2]);
+% fcontour(fxy);
+%[X,Y]=meshgrid(linspace(-5,5,50),linspace(-5,5,50));
+%contour(X,Y,fxy(X,Y),val*[0.7,1,2],'b');
+fcontour(fxy,'k','LevelList',val*[-2,-1,0,1,2]);
 
 
 hold on;
