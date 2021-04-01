@@ -4,7 +4,7 @@ clf;
 fxy=@(x,y) 4*x.^2+y.^2-x-3*y-2;
 f=@(v) fxy(v(1),v(2));
 
-[loc,val,flag]=fmincon(f,[1,1]',[],[],[],[],[],[],@mycon);
+[loc,val,flag]=fmincon(f,[1,1]',[-1 1],[0],[],[],[],[],@mycon);
 
 
 %fcontour(fxy);
@@ -15,6 +15,8 @@ hold on;
 
 
 fimplicit(@g1xy);
+fimplicit(@(x,y)y-x);
+
 
 plot(loc(1),loc(2),'k*');
 
@@ -28,8 +30,8 @@ function [c,ceq] = mycon(x)
 end
 
 function z=g1xy(x,y) 
-  %z=x.^2+3*y.^2+x+2*y;
-  z=x.^2+3*y.^2+x+2*y-15; % a feltétel nélküli minimumot tartalmazza
+  z=x.^2+3*y.^2+x+2*y;
+  %z=x.^2+3*y.^2+x+2*y-15; % a feltétel nélküli minimumot tartalmazza
 
 end
 

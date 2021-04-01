@@ -3,6 +3,7 @@ x=optimvar('x');
 y=optimvar('y');
 obj=f(x,y);
 prob=optimproblem('Objective',obj);
+
 con1=x.*y/2 + (x+2).^2 + (y-2).^2/2 <= 2;
 prob.Constraints.constr = con1;
 x0.x=-3;
