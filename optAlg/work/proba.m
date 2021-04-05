@@ -1,29 +1,29 @@
 x0=[-2,3]';
 
 %feladat=fROSENBROCK();
-feladat=fFERMATWEBER([1,2; 3,4; 5,6; 7,8]');
+fun=fFERMATWEBER([1,2; 3,4; 5,6; 7,8]');
 %feladat=fCUBIC1();
 
 fprintf("####################################\n");
-uFMS(feladat,x0);
+uFMS(fun,x0);
 
 % fprintf("####################################\n");
-% uNEWTON(feladat,x0);
+% uNEWTON(fun,x0);
 
 % fprintf("####################################\n");
-% uLEVMAR(feladat,x0);
+% uLEVMAR(fun,x0);
 
 % fprintf("####################################\nlsFMU\n");
-% uNEWTONLS(feladat,x0,@lsFMU,1);
+% uNEWTONLS(fun,x0,@lsFMU,1);
 
 % fprintf("####################################\nlsBT\n");
-% uNEWTONLS(feladat,x0,@lsBT,1);
+% uNEWTONLS(fun,x0,@lsBT,1);
 
 %fprintf("####################################\nlsFMU\n");
-%uGRADIENTLS(feladat,x0,@lsFMU,1);
+%uGRADIENTLS(fun,x0,@lsFMU,1);
 
-fprintf("####################################\nlsARM\n");
-uGRADIENTLS(feladat,x0,@lsARM,0.03);
+%fprintf("####################################\nlsARM\n");
+%uGRADIENTLS(fun,x0,lsARM(),1);
 
-% fprintf("####################################\nlsBT\n");
-% uGRADIENTLS(feladat,x0,@lsBT,0.1);
+fprintf("####################################\n");
+uGRADIENTLS(fun,x0,lsFMU(),1);

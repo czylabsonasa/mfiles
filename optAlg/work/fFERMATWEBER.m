@@ -11,32 +11,9 @@ function ret=fFERMATWEBER(pontok)
   % pontok=[2.5 0; 0 0; 4 3; 1 4]' ;
 
   % fuggvenyes resz
-  ff = @(x,y) F(x,y,pontok);
-  f = @(v) Fv(v,pontok) ;
-  df =@(v) dFv(v,pontok);
-  % ide meg kellene a d2fv is
-  
-  ret.ff=ff ;
-  ret.f=f ;
-%   ret.dfx=dfx ; % ezeket nem nagyon hasznaljuk kulon
-%   ret.dfy=dfy ;
-  ret.df=df ;
-  
-  % a tartomany
-  xmin = min(pontok(1,:))-1 ;
-  xmax = max(pontok(1,:))+1 ;
-  xb = linspace(xmin,xmax,50) ;
-  ymin = min(pontok(2,:))-1 ;
-  ymax = max(pontok(2,:))+1 ;
-  yb = linspace(ymin,ymax,50) ;
-
-
-  ret.xmin = xmin ; 
-  ret.xmax = xmax ;
-  ret.xb = xb ;
-  ret.ymin = ymin ; 
-  ret.ymax = ymax ;
-  ret.yb=yb ;
+  ret.ff = @(x,y) F(x,y,pontok);
+  ret.f = @(v) Fv(v,pontok) ;
+  ret.df =@(v) dFv(v,pontok);
 
 end
 

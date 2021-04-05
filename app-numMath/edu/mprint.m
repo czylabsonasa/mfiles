@@ -1,5 +1,5 @@
-function myprint(s,A)
-  clc;
+function mprint(s,A)
+  % clc;
   
   fprintf(s) ;
 

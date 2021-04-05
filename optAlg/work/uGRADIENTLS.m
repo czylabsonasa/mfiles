@@ -1,15 +1,17 @@
-function xx=uGRADIENTLS(feladat,x0,lsearch,a0)
-  fprintf("\nmódszer=gradient descent+line search\n");
+function xx=uGRADIENTLS(fun,x0,LS,a0)
+  fprintf("\nmódszer = gradient descent + %s\n",LS.name);
 
   stopcond=STOPCOND() ;
-  
+
   ftol=stopcond.ftol ;
   dftol=stopcond.dftol ;
   xtol=stopcond.xtol ;
   maxit=stopcond.maxit ;
 
-  f=feladat.f ;
-  df=feladat.df ;
+  lsearch=@(x,p,a) LS.lsearch(fun(),x,p,a);
+
+  f=fun.f ;
+  df=fun.df ;
 
   f0 = f(x0) ;
   df0 = df(x0) ;
@@ -24,6 +26,7 @@ function xx=uGRADIENTLS(feladat,x0,lsearch,a0)
 
     if niter>maxit flag = "maxit" ; break ; end
     p=(-df0);
+    p=p/(1+norm(p));
     [alfa,f1] = lsearch(f,df,x0,p,a0);
 
 

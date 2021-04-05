@@ -1,4 +1,4 @@
-function L=mychol(A)
+function L=mchol(A)
 % 
 % Cholesky-decomposition
 % A detailed version of choldec1
@@ -7,7 +7,7 @@ function L=mychol(A)
   L = tril(A) ;
   s = size(L) ;
   r = s(1) ;
-  myprint('\nphase 0:\n',L) ;
+  mprint('\nphase 0:\n',L) ;
   for i=1:r
     fprintf('\nphase %d:\n', i) ;
     fprintf('\n  %d,%d --> ',i,i) ;
@@ -15,7 +15,7 @@ function L=mychol(A)
     s = L(i,1:i-1)*L(i,1:i-1)'; 
     L(i,i) = L(i,i)- s ;
     if L(i,i)<=0
-      myprint('  not a positive definite matrix\n', [])
+      mprint('  not a positive definite matrix\n', [])
       return ;
     end
     L(i,i)=sqrt(L(i,i)) ;
@@ -27,6 +27,6 @@ function L=mychol(A)
       L(j,i) = (L(j,i)-s)/p ;
       %fprintf('  %.2f\n',L(j,i)) ;
     end
-    myprint('',L) ;
+    mprint('',L) ;
   end
 end

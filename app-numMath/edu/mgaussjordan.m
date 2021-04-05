@@ -1,4 +1,4 @@
-function iA=mygaussjordan(A)
+function iA=mgaussjordan(A)
 % inverse through Gauss-Jordan elimination
 % returns an empty matrix in case of no inverse
 
@@ -14,7 +14,7 @@ function iA=mygaussjordan(A)
   W = [A, eye(r,r)] ; % the 'W'ork
   succ=1;
   
-  myprint('\nforward elimination\n\nphase 0:\n', W) ;
+  mprint('\nforward elimination\n\nphase 0:\n', W) ;
   for i=1:r
     nz = find(W(i+1:end,i) ) ;
         
@@ -30,7 +30,7 @@ function iA=mygaussjordan(A)
       W([i,j],:) = W([j,i],:) ;
     end
     
-    myprint('',W) ;
+    mprint('',W) ;
     
     p = 1.0/W(i,i) ;
     for j=(i+1):r
@@ -40,10 +40,10 @@ function iA=mygaussjordan(A)
         W(j,:) = W(j,:) - lji*W(i,:) ;
         W(j,i)=0 ;
 
-        myprint(sprintf('\n    subtract %s times the %d. row from the %d. row\n', strtrim(rats(lji)), i, j),...
+        mprint(sprintf('\n    subtract %s times the %d. row from the %d. row\n', strtrim(rats(lji)), i, j),...
           W) ;
       else
-        myprint('\n    nothing to eliminate\n',[]);
+        mprint('\n    nothing to eliminate\n',[]);
       end
       
     end
@@ -54,13 +54,13 @@ function iA=mygaussjordan(A)
   end
 
     
-  myprint('\nbackward elimination\n\nphase 0:\n', W)
+  mprint('\nbackward elimination\n\nphase 0:\n', W)
   for i=r:-1:1
     fprintf('\nphase %d:\n', i) ;
     p = 1.0/W(i,i) ;
     W(i,:) = p*W(i,:) ;
 
-    myprint('\n  pre-phase: normalize.\n', W) ;
+    mprint('\n  pre-phase: normalize.\n', W) ;
     
     for j=i-1:-1:1
       fprintf('\n  sub-phase %d/%d:\n', i, j) ;
@@ -69,10 +69,10 @@ function iA=mygaussjordan(A)
         W(j,:) = W(j,:) - lji*W(i,:) ;
         W(j,i)=0 ;
 
-        myprint( sprintf('\n    subtract %s times the %d. row from the %d. row\n', strtrim(rats(lji)), i, j),...
+        mprint( sprintf('\n    subtract %s times the %d. row from the %d. row\n', strtrim(rats(lji)), i, j),...
           W) ;
       else
-        myprint('\n    nothing to eliminate\n',[]);
+        mprint('\n    nothing to eliminate\n',[]);
       end
       
     end

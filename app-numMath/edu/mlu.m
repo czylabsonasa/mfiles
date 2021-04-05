@@ -1,4 +1,4 @@
-function [L,U]=mylu(A)
+function [L,U]=mlu(A)
 % 
 % LU - also print the L 
 % 
@@ -7,20 +7,20 @@ function [L,U]=mylu(A)
   r = s(1) ;
   c = s(2) ;
   if not(r == c ) 
-    myprint('A must be square',[]) ;
+    mprint('A must be square',[]) ;
     return ;
   end
   L = eye(r,r) ;
 
-  myprint('\nphase 0:\n',[L,U]) ;
+  mprint('\nphase 0:\n',[L,U]) ;
   for i=1:r-1
     fprintf('\nphase %d:\n', i) ;
     if abs(U(i,i))==0
       if any(abs(U(i+1:end,i))>0)
-        myprint('\n  no way w/o swap...exiting...\n',[]);
+        mprint('\n  no way w/o swap...exiting...\n',[]);
         return ;
       else
-        myprint('\n  no need to eliminate\n',[]);
+        mprint('\n  no need to eliminate\n',[]);
         continue ;
       end
     end
@@ -33,10 +33,10 @@ function [L,U]=mylu(A)
         U(j,:) = U(j,:) - lji*U(i,:) ;
         U(j,i)=0 ;
 
-        myprint(sprintf('\n    subtract %s times the %d. row from the %d. row\n', strtrim(rats(lji)), i, j),...
+        mprint(sprintf('\n    subtract %s times the %d. row from the %d. row\n', strtrim(rats(lji)), i, j),...
           [L,U]) ;
       else
-        myprint('\n    nothing to eliminate\n',[]);
+        mprint('\n    nothing to eliminate\n',[]);
       end
     end
   end
