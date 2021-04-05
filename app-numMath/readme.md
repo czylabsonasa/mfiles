@@ -27,5 +27,5 @@
 ### [mlsolve](edu/mlsolve.m), [musolve](dedu/musolve.m)
 * solve lower/upper triangular systems
 
-### [print](edu/mprint.m)
+### [mprint](edu/mprint.m)
 * printing tool used in various programs, **download it**
