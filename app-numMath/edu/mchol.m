@@ -1,7 +1,6 @@
 function L=mchol(A)
 % 
 % Cholesky-decomposition
-% A detailed version of choldec1
 % Only for playing with small integer matrices.
 % 
   L = tril(A) ;
@@ -11,7 +10,7 @@ function L=mchol(A)
   for i=1:r
     fprintf('\nphase %d:\n', i) ;
     fprintf('\n  %d,%d --> ',i,i) ;
-    % comp of diagonal of L
+    % diagonal entry
     s = L(i,1:i-1)*L(i,1:i-1)'; 
     L(i,i) = L(i,i)- s ;
     if L(i,i)<=0
