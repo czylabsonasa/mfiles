@@ -3,8 +3,9 @@ clf;
 xx=1:0.003:10;
 
 
-atvisz =@(a,b,A,B,t) A+(B-A)/(b-a)*(t-a);
-txx=atvisz(2,8,-pi,pi,xx);% a feladatbeli intervallum
+% atvisz =@(a,b,A,B,t) A+(B-A)/(b-a)*(t-a);
+% txx=atvisz(2,8,-pi,pi,xx);% a feladatbeli intervallum
+txx=pi/3*xx-5*pi/3;
 
 % https://ch.mathworks.com/help/symbolic/piecewise.html
 syms x;
@@ -14,10 +15,11 @@ figure(1)
 nf=3;
 for it=1:nf
    subplot(nf,1,it);
-   plot(xx,2*psum(txx,4*it)+3);
+   eddig=4*it;
+   plot(xx,2*psum(txx,eddig)+3);
    hold on;
    fplot(y);
-   title(sprintf('n=%d',4*it));
+   title(sprintf('n=%d',eddig));
 end
 
 figure(2)

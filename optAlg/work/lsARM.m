@@ -1,4 +1,12 @@
-function [loc,val]=lsARM(f,df,x0,p,a0)
+function ret=lsARM()
+  ret.name="Armijo";
+  ret.lsearch=@lsearch;
+end
+
+
+function [loc,val]=lsearch(fun,x0,p,a0)
+  f=fun.f;
+  df=fun.df;
   alfa = a0 ; % alfa0
   c1 = 0.1 ; % c1
   ro = 0.9 ; % rho

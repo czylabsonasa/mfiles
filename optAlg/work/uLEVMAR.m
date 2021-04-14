@@ -1,4 +1,4 @@
-function xx=uLEVMAR(feladat,x0)
+function xx=uLEVMAR(fun,x0)
 % ez egy egyszerű változat
 
   lambda=0.01;
@@ -10,10 +10,10 @@ function xx=uLEVMAR(feladat,x0)
   xtol=stopcond.xtol ;
   maxit=stopcond.maxit ;
 
-  f=feladat.f ;
-  df=feladat.df ;
-  d2f=feladat.d2f ;
-  numvar=feladat.numvar;
+  f=fun.f ;
+  df=fun.df ;
+  d2f=fun.d2f ;
+  numvar=fun.numvar;
 
 
   xx = [x0] ;
@@ -64,7 +64,7 @@ function xx=uLEVMAR(feladat,x0)
     if not (flag == "none"), break; end
   end
 
-  hRESULT(feladat,flag,niter,xx);
+  hRESULT(fun,flag,niter,xx);
   
   
 end

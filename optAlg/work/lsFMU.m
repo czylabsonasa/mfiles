@@ -1,5 +1,5 @@
 function ret=lsFMU()
-  ret.name="fminsearch";
+  ret.name="fminunc";
   ret.lsearch=@lsearch;
 end
 

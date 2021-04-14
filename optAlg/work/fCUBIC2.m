@@ -24,20 +24,5 @@ function ret=fCUBIC2()
   ret.d2f=d2f;
 
 
-  % a tartomany
-  xmin = -2 ; 
-  xmax = 2 ;
-  xb = linspace(xmin,xmax,50) ;
-  ymin = -2 ; 
-  ymax = 2 ;
-  yb = linspace(ymin,ymax,50) ;
 
-  ret.xmin = xmin ; 
-  ret.xmax = xmax ;
-  ret.xb = xb ;
-  ret.ymin = ymin ; 
-  ret.ymax = ymax ;
-  ret.yb=yb ;
-  
-  
 end

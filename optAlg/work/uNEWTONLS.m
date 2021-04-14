@@ -1,5 +1,5 @@
-function xx=uNEWTONLS(feladat,x0,lsearch,a0)
-  fprintf("\nmódszer=Newton + line search\n");
+function xx=uNEWTONLS(fun,x0,LS,a0)
+  fprintf("\nmódszer=Newton + %s\n",LS.name);
 
   stopcond=STOPCOND() ;
   ftol=stopcond.ftol ;
@@ -7,10 +7,13 @@ function xx=uNEWTONLS(feladat,x0,lsearch,a0)
   xtol=stopcond.xtol ;
   maxit=stopcond.maxit ;
 
-  f=feladat.f ;
-  df=feladat.df ;
-  d2f=feladat.d2f ;
+  f=fun.f ;
+  df=fun.df ;
+  d2f=fun.d2f ;
 
+  lsearch=LS.lsearch;
+  
+  
   xx = [x0] ;
 
   f0 = f(x0) ;
@@ -25,7 +28,7 @@ function xx=uNEWTONLS(feladat,x0,lsearch,a0)
     if niter>maxit, flag = "maxit" ; break ; end
 
     p = d2f(x0) \ (-df0) ; 
-    [alfa,f1] = lsearch(f,df,x0,p,a0) ;
+    [alfa,f1] = lsearch(fun,x0,p,a0) ;
     x1 = x0 + alfa*p ;
 
     df1 = df(x1) ;
@@ -45,6 +48,6 @@ function xx=uNEWTONLS(feladat,x0,lsearch,a0)
     if not (flag == "none"), break; end
   end
 
-  hRESULT(feladat, flag, niter, xx);
+  hRESULT(fun, flag, niter, xx);
 
 end

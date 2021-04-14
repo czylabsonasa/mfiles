@@ -1,5 +1,5 @@
-function xx=uNEWTON(feladat,x0)
-  fprintf("\nNewton\n");
+function xx=uNEWTON(fun,x0)
+  fprintf("módszer = Newton\n");
 
   stopcond=STOPCOND() ;
   ftol=stopcond.ftol ;
@@ -7,9 +7,9 @@ function xx=uNEWTON(feladat,x0)
   xtol=stopcond.xtol ;
   maxit=stopcond.maxit ;
 
-  f=feladat.f ;
-  df=feladat.df ;
-  d2f=feladat.d2f ;
+  f=fun.f ;
+  df=fun.df ;
+  d2f=fun.d2f ;
 
   xx = [x0] ;
 
@@ -45,6 +45,6 @@ function xx=uNEWTON(feladat,x0)
   end
 
 
-  hRESULT(feladat,flag,niter,xx);
+  hRESULT(fun,flag,niter,xx);
   
 end

@@ -8,7 +8,7 @@ function xx=uGRADIENTLS(fun,x0,LS,a0)
   xtol=stopcond.xtol ;
   maxit=stopcond.maxit ;
 
-  lsearch=@(x,p,a) LS.lsearch(fun(),x,p,a);
+  lsearch=LS.lsearch;
 
   f=fun.f ;
   df=fun.df ;
@@ -27,7 +27,7 @@ function xx=uGRADIENTLS(fun,x0,LS,a0)
     if niter>maxit flag = "maxit" ; break ; end
     p=(-df0);
     p=p/(1+norm(p));
-    [alfa,f1] = lsearch(f,df,x0,p,a0);
+    [alfa,f1] = lsearch(fun,x0,p,a0);
 
 
 
@@ -52,6 +52,6 @@ function xx=uGRADIENTLS(fun,x0,LS,a0)
     if not (flag == "none"), break; end
   end
   
-  hRESULT(feladat,flag,niter,xx);
+  hRESULT(fun,flag,niter,xx);
   
 end

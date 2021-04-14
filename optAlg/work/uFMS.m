@@ -1,7 +1,7 @@
-function xx=uFMS(feladat,x0)
+function xx=uFMS(fun,x0)
   fprintf("módszer=fminsearch\n");
 
-  [loc, val, flg, out] = fminsearch(feladat.f, x0) ;
+  [loc, val, flg, out] = fminsearch(fun.f, x0) ;
 
 
   if 1.0==flg
@@ -12,6 +12,6 @@ function xx=uFMS(feladat,x0)
 
   xx=[x0,loc];
 
-  hRESULT(feladat,flag,out.iterations,xx);
+  hRESULT(fun,flag,out.iterations,xx);
 
 end

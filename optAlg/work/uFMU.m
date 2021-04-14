@@ -1,7 +1,7 @@
-function xx=uFMU(feladat,x0)
+function xx=uFMU(fun,x0)
 
   fprintf("módszer=fminunc\n");
-  [loc, val, flg, out] = fminunc(feladat.f, x0, optimoptions('fminunc','Display','none') ) ;
+  [loc, val, flg, out] = fminunc(fun.f, x0, optimoptions('fminunc','Display','none') ) ;
 
   if 1.0==flg
     flag="ok"; 
@@ -11,6 +11,6 @@ function xx=uFMU(feladat,x0)
 
   xx=[x0,loc];
 
-  hRESULT(feladat,flag,out.iterations,xx);
+  hRESULT(fun,flag,out.iterations,xx);
   
 end

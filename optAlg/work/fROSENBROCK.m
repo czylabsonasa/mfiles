@@ -24,21 +24,5 @@ function ret=fROSENBROCK()
   ret.df=df ;
   ret.d2f=d2f ;
   
-  
-  
-  % a tartomany
-  xmin = -2.5 ; 
-  xmax = 2 ;
-  xb = linspace(xmin,xmax,50) ;
-  ymin = -4.5 ; 
-  ymax = 4 ;
-  yb = linspace(ymin,ymax,50) ;
-
-  ret.xmin = xmin ; 
-  ret.xmax = xmax ;
-  ret.xb = xb ;
-  ret.ymin = ymin ; 
-  ret.ymax = ymax ;
-  ret.yb=yb ;
-  
+ 
 end
