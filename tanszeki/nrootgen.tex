@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+
+%\date{}
+\author{Csaba Noszály}
+\title{A variant of Cauchy's root test}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The root test tells nothing about the convergence of the series $\sum_n \frac{1}{2^{\sqrt{n}}}$. A natural question arises: 
+can we take take the $\lambda_n=\sqrt{n}$-th root instead of the $n$-th? The answer is positive for a certain class of $\lambda_n$-s.
+\end{abstract}
+
+
+\vspace{0.2cm}
+\noindent {\textbf{Lemma. }}\newline
+\noindent Consider a complex series $\sum_n a_n$ and a real sequence $\lambda_n$ for which:
+\begin{gather*}
+\frac{\lambda_n}{\log{n}}\to \infty
+\end{gather*}
+Then:
+\begin{gather*}
+L<1 \ \implies \ \sum_n |a_n|< \infty \\
+L>1 \ \implies \ \sum_n |a_n|= \infty
+\end{gather*}
+where
+\begin{gather*}
+L={\overline{\lim}}_n |a_n|^{\frac{1}{\lambda_n}}
+\end{gather*}
+
+
+\vspace{0.2cm}
+\noindent {\it Proof}: \newline If $L<1$ then by the properties of $\lambda_n$ and $\overline{\lim}$ there is a $n_q$ such that if $n\ge n_q$ we have:
+\begin{gather*}
+    |a_n|^{\frac{1}{\lambda_n}}\le \sup_{k\ge n} |a_k|^{\frac{1}{\lambda_k}}< \frac{1+L}{2}=q<1 \\
+\end{gather*}
+and
+\begin{gather*}
+  \log(q)\frac{\lambda_n}{\log(n)}<-2 \\
+\end{gather*}
+
+\noindent Putting them together:
+\begin{gather*}
+|a_n| < q^{\lambda_n} = 
+e^{\log(q)\lambda_n} = e^{\log(n) \log(q)\frac{\lambda_n}{\log(n)}} = n^{\log(q)\frac{\lambda_n}{\log(n)}}< \frac{1}{n^2} 
+\end{gather*}
+we get the convergence part, by comparison.
+
+
+\vspace{0.2cm}
+\noindent If $L>1$ then there is a subsequence $a_{k(n)}$ for which $|a_{k(n)}|>1$, therefore $a_n$ is not a null sequence.
+
+\vspace{0.2cm}
+\noindent {\textbf{Example. }}
+\par\noindent Consider the series:
+\begin{gather*}
+\sum_n \frac{n^\beta}{r^{n^\alpha}}
+\end{gather*}
+for $r>1,\ \alpha>0, \beta>0$. Choose $\lambda_n=n^\alpha$, and use that ${n^\beta}^{\frac{1}{n^\alpha}}=e^{\frac{\beta}{\alpha} \frac{\log{n^\alpha}}{n^\alpha}}\to 1$, 
+the lemma implies the convergence.
+
+
+\vspace{0.2cm}
+\noindent {\textbf{Summary. }}
+\par\noindent The lemma is a stronger version of the famous root test. It can be used as an alternative of the condensation or integral test.
+
+
+
+
+
+
+\end{document}
