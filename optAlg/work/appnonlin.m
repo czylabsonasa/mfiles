@@ -5,5 +5,5 @@ xx = uFMS(fun,x0);
 fprintf("-------------------\n");
 xx = uNEWTON(fun,x0);
 fprintf("-------------------\n");
-xx = uCGLSsol(fun,x0,lsFMS(),0);
+xx = uCGLS(fun,x0,lsFMS(),0);
 fprintf("-------------------\n");
