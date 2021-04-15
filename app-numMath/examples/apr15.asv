@@ -1,0 +1,16 @@
+% 15 april examples
+
+xx=linspace(-5,5);
+
+
+f=@(x) cos(x)-x;
+
+
+
+plot(xx,f(xx),[-5,5],[0,0]);
+
+
+
+function bisect(f,a,b,step)
+  for i=1:step
+end
