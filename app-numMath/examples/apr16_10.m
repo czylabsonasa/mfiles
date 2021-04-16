@@ -1,10 +1,10 @@
 % apr 16
 
-xx=linspace(1,5);
-aa=[1,5];
+xx=linspace(-5,5);
+aa=[-5,5];
 
-% f=@(x) x.^3-2*x+2;
-% df=@(x) 3*x.^2-2;
+f=@(x) x.^3-3*x+2; % ((x+0)*x-3)*x+2
+df=@(x) 3*x.^2-3;
 
 % f=@(x) x.^2;
 % df=@(x) 2*x;
@@ -15,28 +15,31 @@ aa=[1,5];
 % f=@(x) exp(x) - 4*x.^2;
 % df=@(x) exp(x) - 8*x;
 
-f=@(x)log(x)-x+2;
-df=@(x) 1./x-1;
+% f=@(x)log(x)-x+2;
+% df=@(x) 1./x-1;
 
 
 plot(xx,f(xx),aa,[0,0]);
 
 % return
 
-[h,k,flag]=hurtol(f,3,3.5,1e-12,30)
-h
-k
-flag
+% [h,k,flag]=hurtol(f,3,3.5,1e-12,30)
+% h
+% k
+% flag
 
 
 
 % bs=bisect(f,4,4.5,10)
 
+n=newtona(f,df,1.5,15,2)
+
+
 % n=newtona(f,df,5,10,1.7)
 % s=secant(f,0.3,0.35,8)
 
-fz=fzero(f,[3,3.5])
-elteres=abs(h-fz)
+% fz=fzero(f,[4,4.5])
+% elteres=abs(n-fz)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -90,7 +93,8 @@ end
 
 function x=newton(f,df,x,step)
   for i=1:step
-    x=x-f(x)/df(x)
+    x=x-f(x)/df(x);
+    fprintf("%.15f\n",x);
   end
 end
 
