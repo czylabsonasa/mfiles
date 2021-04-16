@@ -1,22 +1,6 @@
-% 15 april examples
+% apr 16
 
-xx=linspace(-pi/2,pi/2);
-g=@(x) cos(x)/3;
-a=[-pi/2,pi/2];
-plot(xx,g(xx),a,a,a,[0,0]);
-
-x=0.5
-for i=1:10
-  x=g(x)
-end
-
-
-
-
-
-return
-
-xx=linspace(1,5);
+xx=linspace(-5,5);
 
 
 % f=@(x) cos(x)-x;
@@ -25,7 +9,7 @@ xx=linspace(1,5);
 % f=@(x) exp(x) - 4*x.^2;
 % df=@(x) exp(x) - 8*x;
 
-f=@(x)log(x)-x+2;
+% f=@(x)log(x)-x+2;
 
 
 plot(xx,f(xx),[1,5],[0,0]);
@@ -72,3 +56,16 @@ function m=bisect(f,a,b,step)
   end
   m=0.5*(a+b);
 end
+
+
+% xx=linspace(-pi/2,pi/2);
+% g=@(x) cos(x)/3;
+% a=[-pi/2,pi/2];
+% plot(xx,g(xx),a,a,a,[0,0]);
+% 
+% x=0.5
+% for i=1:10
+%   x=g(x)
+% end
+
+% return
