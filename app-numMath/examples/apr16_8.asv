@@ -1,16 +1,26 @@
 % apr 16
 
+a=10;
+kobgyok(a,6)
+exp()
+
+return
+
+
+
 xx=linspace(-5,5);
 aa=[-5,5];
 
 % f=@(x) x.^3-2*x+2;
 % df=@(x) 3*x.^2-2;
 
-% f=@(x) x.^2;
-% df=@(x) 2*x;
+f=@(x) x.^2;
+df=@(x) 2*x;
+
+
 
 % f=@(x) cos(x)-x;
-% df=@(x) -sin(x)-1;aimmf1
+% df=@(x) -sin(x)-1;
 
 % f=@(x) exp(x) - 4*x.^2;
 % df=@(x) exp(x) - 8*x;
@@ -19,7 +29,7 @@ aa=[-5,5];
 
 plot(xx,f(xx),aa,[0,0]);
 
-return
+% return
 
 % h=hur(f,0,1,50)
 
@@ -85,7 +95,7 @@ end
 
 
 function x=kobgyok(a,step)
-  x=1;
+  x=a;
   for i=1:step
     x=2/3*x+1/3*a/x^2
   end
@@ -103,12 +113,4 @@ end
 %   x=g(x)
 % end
 
-% return
-
-
-% a=10;nthroot(a,3)
-% 
-% kobgyok(a,6)
-% a^(1/3)
-% 
 % return
