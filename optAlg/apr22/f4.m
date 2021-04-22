@@ -8,14 +8,14 @@ n=200;
 
 t=linspace(0,4*pi,n)';
 %y=sin(t)+sin(2*t);
-y=sin(t)+t.*sin(2*t);y=sin(t)+t.*sin(2*t);
+y=sin(t)+t.*sin(2*t.^2);
 
 
 
-megvan=70; % ez százalék
+megvan=30; % ez százalék
 
 van=rand(n,1)<megvan/100; 
-hiany=~van;y=sin(t)+t.*sin(2*t);
+hiany=~van;
 
 
 tv=t(van);
