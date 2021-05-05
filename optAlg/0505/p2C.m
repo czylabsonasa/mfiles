@@ -1,11 +1,9 @@
 % vak keresés
 % tortenet beepitese:
-% s: az eddigi ertekek osszege
-% s2 az eddigi ertekek negyzetosszege
-% + szabaly az elfogadasra:
-% az uj ertek az eddigiek atlagatol 
-% legalabb a szoras valahanyszorosaval kisebb
-% tul sok regi informacio...
+% csak a legutolso eddigi nehany legjobbat figyeljuk -> W
+% szabaly az elfogadasra:
+% az uj ertek az W atlagatol 
+% legalabb az W szorasanak valahanyszorosaval kisebb
 
 clear;
 clf;
@@ -26,32 +24,33 @@ b2 = 4;
 U = @() [a1 + (b1-a1)*rand(); a2 + (b2-a2)*rand()];
 
 % maxit:
-maxit = 5000;
+maxit = 500;
 
 % az összes pont:
 t = zeros(2,maxit+1);
 % ertekek
 Ft = zeros(maxit+1,1);
 
-% init, random kezdőpont
-t1=U();
-t(:,1)=t1;
-Ft(1)=F(t1);
-s=Ft(1);
-s2=s*s;
-% k-pont van meg
-k=1;
 
-it=2;
+% nW meretu suffix-et figyelunk a generalt sorozatban
+nW=5;
+
+% init, random kezdőpontok (nem nezunk nagysagrendet)
+for it=1:nW
+  t1=U();
+  t(:,it)=t1;
+  Ft(it)=F(t1);
+end
+% nW-pont van meg
+k=nW;
+
+it=nW+1;
 while true
   if it>maxit, break; end
   u = U();
   Fu = F(u);
-  %if Fu < Ft(k) || Fu < s/k-sqrt(s2/k-(s/k)^2)
-  if Fu < s/k -sqrt(s2/k-(s/k)^2)
+  if Fu < Ft(k) || Fu < mean(Ft(k-nW+1:k))-2*std(Ft(k-nW+1:k))
     k=k+1;
-    s=s+Fu;
-    s2=s2+Fu^2;
     t(:,k) = u;
     Ft(k) = Fu;
   end
@@ -65,6 +64,7 @@ loc=t(:,k);
 val=Ft(k);
 fprintf("loc=(%.2f,%.2f) val=%.2f\n",loc(1),loc(2),val);
 fprintf("maxit=%d k=%d\n",maxit,k);
+
 
 
 % ad-hoc rajzolgatas
