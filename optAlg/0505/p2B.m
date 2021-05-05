@@ -26,7 +26,7 @@ b2 = 4;
 U = @() [a1 + (b1-a1)*rand(); a2 + (b2-a2)*rand()];
 
 % maxit:
-maxit = 500;
+maxit = 5000;
 
 % az összes pont:
 t = zeros(2,maxit+1);
@@ -47,8 +47,8 @@ while true
   if it>maxit, break; end
   u = U();
   Fu = F(u);
-%  if Fu < Ft(k) || Fu < s/k-4*sqrt(s2/k-(s/k)^2)
-  if Fu < s/k-10*sqrt(s2/k-(s/k)^2)
+  %if Fu < Ft(k) || Fu < s/k-sqrt(s2/k-(s/k)^2)
+  if Fu < s/k %-sqrt(s2/k-(s/k)^2)
     k=k+1;
     s=s+Fu;
     s2=s2+Fu^2;
