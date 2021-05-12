@@ -31,7 +31,7 @@ dF=@(x,d)F(x+d)-F(x-d);
 U = @() [a1 + (b1-a1)*rand(); a2 + (b2-a2)*rand()];
 inU = @(v) a1<=v(1) && v(1)<=b1 && a2<=v(2) && v(2)<=b2; 
 % maxit:
-maxit = 50;
+maxit = 500;
 
 % az összes pont:
 t = zeros(2,maxit+1);
