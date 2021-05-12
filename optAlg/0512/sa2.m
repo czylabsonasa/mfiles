@@ -6,7 +6,7 @@ clf;
 close all;
 
 % ez a graf
-n=100;
+n=5;
 C=randi(10,n,n);
 C=C+C'; % hogy szimmetrikus legyen
 
@@ -45,9 +45,9 @@ while lev<maxLev
     seged=sample2(seged);
     i1=seged(1);
     i2=seged(2);
-
     x1=x0;
     x1([i1,i2])=x1([i2,i1]);
+
     E1=E(x1,C); ncall=ncall+1;
 
     dE=E1-E0;

@@ -45,10 +45,8 @@ getRho=@(lev,x) sqrt(x);
 ncall=1;
 
 % kezdo homerseklet (T0)
-T=getT(1);
+T=getT(1,0);
 % vegso homerseklet
-% itt nem hasznalja
-Tmin=0;
 
 % kezdo lepes nagysag
 rho=getRho(1,T);
@@ -64,7 +62,7 @@ x0=U();
 E0=E(x0);
 
 lev=1;
-while T>Tmin && lev<maxLev
+while lev<maxLev
 
   nt=0;
   while nt<NT

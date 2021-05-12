@@ -24,7 +24,7 @@ b = 1;
 
 
 % U: egyenletes az Omega halmazon
-U = @(n) a + (b-a)*rand(dim,n);
+U = @() a + (b-a)*rand(dim,1);
 
 % a tartomanyban maradas ellenorzese
 inDom= @(x) all(a<=x & x<=b);
@@ -34,14 +34,14 @@ deltaX=@(d) d*rand(dim,1)-0.5*d;
 nextRho=@(r) r;
 
 % kezdo homerseklet (T0)
-T0=1000;
+T0=100;
 % vegso homerseklet
 Tmin=0.1;
 % kovetkezo homerseklet
 nextT=@(t) 0.9*t;
 
 % lepesek szama "szintenként"
-NT=5;
+NT=3;
 
 
 
@@ -49,10 +49,10 @@ NT=5;
 ncall=1;
 
 % kezdo pont es energia
-x0=U(1);
+x0=U();
 E0=E(x0);
 T=T0;
-rho=(b-a);
+rho=(b-a)/3;
 
 while T>Tmin
 
