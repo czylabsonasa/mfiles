@@ -39,7 +39,7 @@ end
 fprintf("Euler %d lépésben = %f\n", m, Y ) ;
 
 % RK2
-plot( t0, y0, 'g*') ;
+plot( t0, y0, 'g*') ;:
 T = t0 ;
 Y = y0 ;
 for k = 1:m
@@ -47,7 +47,7 @@ for k = 1:m
   k2 = f(T + h, Y + h*k1 ) ;
   Y = Y + h*(k1 + k2)/2 ;
   T = T + h ;
-  plot( T, Y, 'g*') ;
+k  plot( T, Y, 'g*') ;
 end
 
 fprintf("RK1 %d lépésben = %f\n", m ,Y ) ;
