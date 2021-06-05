@@ -1,0 +1,31 @@
+syms y(t)
+
+% szimbolikus megoldas
+equ = diff(y,t) == 1/t*y^2 ;
+t0 = 1 ;
+y0 = 1 ;
+
+
+mo = matlabFunction( dsolve( equ, y(t0) == y0 ) )
+
+tv = 2
+fprintf("a pontos = ", mo(2) ) ;
+
+xx = linspace(t0, tv) ;
+plot(xx, mo(xx) ) ;
+hold on ;
+
+f = @(t, y) 1./t .* y^2 ;
+
+% Euler 
+h=0.2 ;
+plot( t0, y0, 'r*') ;
+t = t0 ;
+while t < tv
+  y = y + h*f(t,y) ;
+  t = t + h ;
+end
+
+
+
+
